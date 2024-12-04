@@ -6,6 +6,7 @@ import styles from "@/styles/Home.module.css";
 import Header from "@/components/header";
 import SearchInput from "@/components/search";
 import Card from "@/components/card";
+import LoadingSpinner from "@/components/loading";
 import useFetchData from "@/hooks/useFetchOffices";
 
 import { OfficeData, Line } from "@/types/common";
@@ -71,7 +72,7 @@ export default function Home() {
                         />
                     </div>
                     {loading ? (
-                        <h1>Cargando sucursales...</h1>
+                        <LoadingSpinner />
                     ) : (
                         <div className={styles.cardList}>
                             {data?.map(
