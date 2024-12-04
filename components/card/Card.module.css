@@ -1,0 +1,43 @@
+.container {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.content {
+    padding: 10px;
+    background-color: var(--light-blue);
+    height: 100px;
+    font-weight: bold;
+}
+
+.icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.icon i {
+    font-size: 25px;
+}
+
+.icon p {
+    font-size: 20px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    background-color: var(--on-line);
+}
+
+.offlineContent {
+    background-color: var(--light-grey);
+}
+
+.offlineFooter {
+    background-color: var(--grey);
+}

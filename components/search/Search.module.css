@@ -1,0 +1,22 @@
+.container {
+    position: relative;
+    max-width: 300px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    padding-left: 35px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: var(--foreground);
+}
+
+.icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #888;
+}
