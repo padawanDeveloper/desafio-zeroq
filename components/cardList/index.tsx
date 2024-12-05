@@ -23,7 +23,7 @@ const CardList = ({ data, handleChangeState }: IProps) => {
         (data: Array<Line>) => reduceLines(data),
         []
     );
-    console.log("log");
+
     return (
         <div className={styles.cardList}>
             {data?.map(({ name, online, id, lines }: OfficeData) => {
