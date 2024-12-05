@@ -7,10 +7,11 @@ type Props = {
     office: string;
     active: boolean;
     line: Line;
+    onChangeState: () => void;
 };
 
-const Card = React.memo(({ office, line, active }: Props) => (
-    <div className={styles.container}>
+const Card = React.memo(({ office, line, active, onChangeState }: Props) => (
+    <div className={styles.container} onClick={onChangeState}>
         <div
             className={`${styles.content} ${
                 !active ? styles.offlineContent : ""

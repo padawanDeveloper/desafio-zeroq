@@ -1,15 +1,15 @@
-import { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import Head from "next/head";
 import localFont from "next/font/local";
 import styles from "@/styles/Home.module.css";
 
 import Header from "@/components/header";
 import SearchInput from "@/components/search";
-import Card from "@/components/card";
+import CardList from "@/components/cardList";
 import LoadingSpinner from "@/components/loading";
 import useFetchData from "@/hooks/useFetchOffices";
 
-import { OfficeData, Line } from "@/types/common";
+import { OfficeData } from "@/types/common";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -26,28 +26,19 @@ interface IResponse {
     data: Array<OfficeData> | null;
     loading: boolean;
     error: string | null;
+    handleChangeState: (id: number, status: boolean) => void;
 }
 
-const reduceLines = (data: Array<Line>) =>
-    data.reduce<Line>(
-        (acc, item) => {
-            return {
-                waiting: item.waiting + acc.waiting,
-                elapsed: item.elapsed + acc.elapsed,
-            };
-        },
-        { waiting: 0, elapsed: 0 }
-    );
+const Home = React.memo(() => {
+    const { data, loading, error, handleChangeState }: IResponse =
+        useFetchData();
 
-export default function Home() {
-    const { data, loading, error }: IResponse = useFetchData();
+    const [query, setQuery] = useState<string>("");
 
     if (!!error) return <h1>{error}</h1>;
 
-    const handleReduceLines = useCallback(
-        (data: Array<Line>) => reduceLines(data),
-        []
-    );
+    const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+        setQuery(e.target.value);
 
     return (
         <>
@@ -67,35 +58,26 @@ export default function Home() {
                     <Header />
                     <div className={styles.toolbar}>
                         <SearchInput
-                            onChange={() => console.log()}
-                            value={""}
+                            onChange={handleTextChange}
+                            value={query}
                         />
                     </div>
                     {loading ? (
                         <LoadingSpinner />
                     ) : (
-                        <div className={styles.cardList}>
-                            {data?.map(
-                                ({ name, online, id, lines }: OfficeData) => {
-                                    const line = handleReduceLines(lines);
-                                    return (
-                                        <Card
-                                            key={id}
-                                            office={name}
-                                            line={{
-                                                waiting: line.waiting,
-                                                elapsed:
-                                                    line.elapsed / lines.length,
-                                            }}
-                                            active={online}
-                                        />
-                                    );
-                                }
+                        <CardList
+                            data={data?.filter((item) =>
+                                item.name
+                                    .toLowerCase()
+                                    .includes(query.toLowerCase())
                             )}
-                        </div>
+                            handleChangeState={handleChangeState}
+                        />
                     )}
                 </main>
             </div>
         </>
     );
-}
+});
+
+export default Home;
