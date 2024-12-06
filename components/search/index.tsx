@@ -10,6 +10,7 @@ const SearchInput = ({ onChange, value }: IProps) => {
     return (
         <div className={`${styles.container} search-container `}>
             <input
+                data-testid="input"
                 type="search"
                 value={value}
                 onChange={onChange}

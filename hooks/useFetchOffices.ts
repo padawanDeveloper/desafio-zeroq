@@ -11,7 +11,7 @@ const useFetchData = () => {
             try {
                 const response = await fetch("api/offices");
                 if (!response.ok) {
-                    throw new Error("Network response was not ok");
+                    throw new Error("Network error");
                 }
                 const result = await response.json();
                 setData(result);
