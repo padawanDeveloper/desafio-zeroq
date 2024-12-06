@@ -24,4 +24,4 @@ pnpm dev
 bun dev
 ```
 
-Para ver en linea [https://0q-two.vercel.app/](ingresar aquí).
+Para ver en linea [ingresar aquí](https://0q-two.vercel.app/).
