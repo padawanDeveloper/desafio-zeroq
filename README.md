@@ -24,4 +24,11 @@ pnpm dev
 bun dev
 ```
 
+-   Correr los test
+
+```bash
+npm run test
+
+```
+
 Para ver en linea [ingresar aquí](https://0q-two.vercel.app/).
