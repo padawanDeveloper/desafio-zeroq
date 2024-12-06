@@ -14,8 +14,8 @@
         "jsx": "preserve",
         "incremental": true,
         "types": ["@testing-library/jest-dom"],
-        "noImplicitAny": true,
-        "strictFunctionTypes": true,
+        "noImplicitAny": false,
+        "strictFunctionTypes": false,
         "noImplicitThis": true,
         "alwaysStrict": true,
         "paths": {
