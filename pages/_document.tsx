@@ -4,7 +4,6 @@ export default function Document() {
     return (
         <Html lang="en">
             <Head>
-                <title>ZeroQ</title>
                 <meta name="description" content="Desafio" />
                 <meta
                     name="viewport"
