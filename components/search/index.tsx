@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Search.module.css";
 
 interface IProps {
-    onChange: () => void;
+    onChange: (e) => void;
     value: string;
 }
 
