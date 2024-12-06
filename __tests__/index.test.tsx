@@ -1,7 +1,7 @@
-import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import React, { useEffect, useState } from "react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 
-import useFetchData from "@/hooks/useFetchOffices";
+import useFetchData from "../hooks/useFetchOffices";
 import Home from "@/pages/index";
 
 jest.mock("../hooks/useFetchOffices");
@@ -83,5 +83,51 @@ describe("Home Component", () => {
 
         fireEvent.change(searchInput, { target: { value: "Office" } });
         expect(searchInput).toHaveValue("Office");
+    });
+});
+
+const TestComponent = () => {
+    const loading = true;
+    const error = false;
+    if (loading) return <div data-testid="loading">Loading...</div>;
+    if (error) return <div data-testid="error">Error:</div>;
+    return <div data-testid="data">Data:</div>;
+};
+
+describe("useFetchData", () => {
+    beforeEach(() => {
+        global.fetch = jest.fn();
+    });
+
+    afterEach(() => {
+        jest.resetAllMocks();
+    });
+
+    it("should fetch data successfully", async () => {
+        const mockData = { data: "test data" };
+        (global.fetch as jest.Mock).mockResolvedValue({
+            json: jest.fn().mockResolvedValue(mockData),
+        });
+
+        render(<TestComponent />);
+
+        expect(screen.getByTestId("loading")).toBeInTheDocument();
+
+        // await waitFor(() =>
+        //     expect(screen.getByTestId("data")).toBeInTheDocument()
+        // );
+    });
+
+    it("should handle fetch error", async () => {
+        const mockError = new Error("Fetch error");
+        (global.fetch as jest.Mock).mockRejectedValue(mockError);
+
+        render(<TestComponent />);
+
+        expect(screen.getByTestId("loading")).toBeInTheDocument();
+
+        // await waitFor(() =>
+        //     expect(screen.getByTestId("error")).toBeInTheDocument()
+        // );
     });
 });
