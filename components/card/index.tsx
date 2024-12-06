@@ -40,4 +40,7 @@ const Card = React.memo(({ office, line, active, onChangeState }: Props) => (
     </div>
 ));
 
+//Required for cloudflare deployment
+Card.displayName = "Card";
+
 export default Card;

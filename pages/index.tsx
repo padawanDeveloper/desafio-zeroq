@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import localFont from "next/font/local";
 import styles from "@/styles/Home.module.css";
@@ -79,5 +79,8 @@ const Home = React.memo(() => {
         </>
     );
 });
+
+//Required for cloudflare deployment
+Home.displayName = "Home";
 
 export default Home;
