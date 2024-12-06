@@ -25,5 +25,5 @@ export default function handler(
                 message: `Método ${req.method} no permitido`,
             });
         });
-    }, 3000);
+    }, 2000);
 }

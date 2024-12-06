@@ -23,6 +23,12 @@ const useFetchData = () => {
         };
 
         fetchData();
+
+        const timeoutId = setInterval(() => {
+            fetchData();
+        }, 60000);
+
+        return () => clearTimeout(timeoutId);
     }, []);
 
     const handleChangeState = (id: number, status: boolean) => {
