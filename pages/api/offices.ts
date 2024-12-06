@@ -3,7 +3,7 @@ import fs from "fs";
 
 export default function handler(
     req: { method: string },
-    res: { status: Function; json: Function }
+    res: { status: any; json: any }
 ) {
     setTimeout(() => {
         const filePath = path.join(process.cwd(), "public", "offices.json");

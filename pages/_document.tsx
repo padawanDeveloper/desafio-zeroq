@@ -11,7 +11,7 @@ export default function Document() {
                 />
                 <link rel="icon" href="/favicon.ico" />
                 <link
-                    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+                    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp&display=optional"
                     rel="stylesheet"
                 />
             </Head>
